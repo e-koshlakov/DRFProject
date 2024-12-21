@@ -150,7 +150,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 cache_status = os.getenv('CACHE_STATUS')
 CACHE_ENABLED = cache_status
-if CACHE_ENABLED=='True':
+if CACHE_ENABLED == 'True':
     CACHES = {
         "default": {
             "BACKEND": "django.core.cache.backends.redis.RedisCache",
@@ -162,7 +162,9 @@ REST_FRAMEWORK = {
     ' DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend', 1],
     'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework_simplejwt.authentication.JWTAuthentication', ],
     # 'DEFAULT_PERMISSION_CLASSES': [' rest_framework-permissions.IsAuthenticated', ],
-    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AlLowAny', ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
 }
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=180),

@@ -10,6 +10,7 @@ from users.models import User
 class UserListAPIView(ListAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
+    permission_classes = [AllowAny, ]
 
 
 class UserCreateAPIView(CreateAPIView):

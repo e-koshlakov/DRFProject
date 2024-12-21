@@ -1,6 +1,6 @@
 mssql-django
-Django
-python-dotenv
+Django~=5.0.10
+python-dotenv~=1.0.1
 djangorestframework
 pillow
 django-filter
@@ -10,3 +10,5 @@ django-cors-headers
 drf-yasg
 redis
 coverage
+
+pyodbc~=5.2.0

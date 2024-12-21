@@ -8,7 +8,7 @@ class Command(BaseCommand):
             email='admin@web.top',
             first_name='Admin',
             last_name='Adminov',
-            role='admin',
+            role='moderator',
             is_staff=True,
             is_superuser=True,
             is_active=True
@@ -32,16 +32,16 @@ class Command(BaseCommand):
         moderator.save()
         print('Moderator created')
 
-        user = User.objects.create(
-            email='user@web.top',
-            first_name='User',
-            last_name='Userov',
-            role='user',
+        member = User.objects.create(
+            email='member@web.top',
+            first_name='Member',
+            last_name='Memberov',
+            role='member',
             is_staff=False,
             is_superuser=False,
             is_active=True
         )
 
-        user.set_password('qwerty')
-        user.save()
-        print('User created')
+        member.set_password('qwerty')
+        member.save()
+        print('Member created')

@@ -44,3 +44,4 @@ class UserDestroyAPIView(DestroyAPIView):
 class UserObtainTokenView(TokenObtainPairView):
     serializer_class = UserObtainTokenSerializer
     permission_classes = [AllowAny, ]
+

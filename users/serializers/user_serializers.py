@@ -32,10 +32,9 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         validators = [PasswordValidator(field='password')]
 
 
-class UserObtainTokenSerializer(serializers.Serializer):
+class UserObtainTokenSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
         token['email'] = user.email
-
         return token

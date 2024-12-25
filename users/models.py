@@ -6,15 +6,11 @@ NULLABLE = {'blank': True, 'null': True}
 
 
 class UserRoles(models.TextChoices):
-    """Class need for different level of permission, it depends of User.role
-    (Класс необходимый для различных уровней доступа, доступ зависит от User,role)"""
     MODERATOR = 'moderator', _('moderator')
     MEMBER = 'member', _('member')
 
 
 class User(AbstractUser):
-    """User model
-    (Модель User)"""
     username = None
     email = models.EmailField(unique=True, verbose_name='email')
     role = models.CharField(max_length=9, choices=UserRoles.choices, default=UserRoles.MEMBER, verbose_name='Role')

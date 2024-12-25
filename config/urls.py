@@ -39,6 +39,7 @@ urlpatterns = [
                   # base url
                   path('admin/', admin.site.urls),
                   # apps urls
+                  path('api/v1/', include('sections.urls', namespace='sections')),
                   path('api/v1/users/', include('users.urls'), name='users_api'),
                   # documentation urls
                   path('api/v1/swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),

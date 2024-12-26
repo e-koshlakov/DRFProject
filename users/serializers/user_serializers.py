@@ -15,7 +15,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email', 'password',)
+        fields = ('id', 'email', 'password', 'first_name', 'last_name', 'phone', 'is_active',)
         validators = [PasswordValidator(field='password')]
 
     def create(self, validated_data):
@@ -32,7 +32,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         validators = [PasswordValidator(field='password')]
 
 
-class UserObtainTokenSerializer(TokenObtainPairSerializer):
+class UserTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)

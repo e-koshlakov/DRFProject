@@ -34,13 +34,13 @@ class ContentTestCase(APITestCase):
         self.assertEqual(response.json()['title'], 'test_content_create')
 
     def test_content_delete(self):
-        response = self.client.delete(f'/content/{self.test_content.id}/delete/')  # Юзаем id
+        response = self.client.delete(f'/content/{self.test_content.id}/delete/')
         # print(response.json())
         print('{Тест на delete response не вернёт =(. Но он работает)}')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_content_detail(self):
-        response = self.client.get(f'/content/{self.test_content.id}/')  # Юзаем id
+        response = self.client.get(f'/content/{self.test_content.id}/')
         print(response.json())
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.json()['title'], 'test_content_title')
@@ -55,13 +55,13 @@ class ContentTestCase(APITestCase):
 
     def test_content_update(self):
         data = {
-            'section': self.test_section.id,  # Обновляем на тот же раздел. Юзаем id
+            'section': self.test_section.id,  # Обновляем на тот же раздел.
             'title': 'test_content_put',
             'content': 'test_content_description_put',
         }
         response = self.client.put(f'/content/{self.test_content.id}/update/', data=data)  # И здесь подставляем id
         print(response.json())
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.json()['section'], self.test_section.id)  # Проверяем правильный раздел. Юзаем id
+        self.assertEqual(response.json()['section'], self.test_section.id)
         self.assertEqual(response.json()['title'], 'test_content_put')
         self.assertEqual(response.json()['content'], 'test_content_description_put')

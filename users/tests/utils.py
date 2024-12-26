@@ -5,13 +5,13 @@ from users.models import User, UserRoles
 
 def get_admin_user():
     user = User.objects.create(
-        email='test_admin@web.top',
+        email='tester@web.top',
         role=UserRoles.MODERATOR,
         is_active=True,
         is_superuser=True,
         is_staff=True
     )
-    user.set_password('qwerty')
+    user.set_password('Qwerty12')
     user.save()
     return user
 
@@ -24,6 +24,6 @@ def get_member_user():
         is_superuser=False,
         is_staff=False
     )
-    user.set_password('qwerty')
+    user.set_password('Qwerty12')
     user.save()
     return user

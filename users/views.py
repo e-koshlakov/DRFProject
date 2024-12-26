@@ -1,34 +1,33 @@
-from rest_framework.generics import ListAPIView, UpdateAPIView, CreateAPIView, RetrieveAPIView, DestroyAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny
 
-from users.serializers.user_serializers import UserSerializer, UserCreateSerializer, UserUpdateSerializer, \
-    UserObtainTokenSerializer
+from users.serializers.user_serializers import UserCreateSerializer, UserUpdateSerializer, UserSerializer, \
+    UserTokenObtainPairSerializer
 from users.models import User
 
 
 class UserListAPIView(ListAPIView):
-    serializer_class = UserSerializer
     queryset = User.objects.all()
-    permission_classes = [AllowAny, ]
+    serializer_class = UserSerializer
 
 
 class UserCreateAPIView(CreateAPIView):
-    serializer_class = UserCreateSerializer
     queryset = User.objects.all()
+    serializer_class = UserCreateSerializer
     permission_classes = [AllowAny, ]
 
 
 class UserRetrieveAPIView(RetrieveAPIView):
-    serializer_class = UserSerializer
     queryset = User.objects.all()
-    permission_classes = [AllowAny, ]
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated, ]
 
 
 class UserUpdateAPIView(UpdateAPIView):
-    serializer_class = UserUpdateSerializer
     queryset = User.objects.all()
-    permission_classes = [AllowAny, ]
+    serializer_class = UserUpdateSerializer
+    permission_classes = [IsAuthenticated, ]
 
     def get_queryset(self):
         user = self.request.user
@@ -36,12 +35,22 @@ class UserUpdateAPIView(UpdateAPIView):
 
 
 class UserDestroyAPIView(DestroyAPIView):
-    serializer_class = UserSerializer
     queryset = User.objects.all()
-    permission_classes = [AllowAny, ]
+    permission_classes = [IsAuthenticated, IsAdminUser]
 
 
-class UserObtainTokenView(TokenObtainPairView):
-    serializer_class = UserObtainTokenSerializer
-    permission_classes = [AllowAny, ]
+class UserTokenObtainPairView(TokenObtainPairView):
+    serializer_class = UserTokenObtainPairSerializer
+
+
+
+
+
+
+
+
+
+
+
+
 
